@@ -508,7 +508,7 @@ nav {
       <hr class="divider-line">
 
       <div class="price-row">
-        <div class="price-new" id="dynamicPrice">৳১,৪০০</div>
+        <div class="price-new" id="dynamicPrice">৳১,৩৯০</div>
         <div class="free-delivery-tag" id="freeDeliveryTag">✦ Free Delivery</div>
       </div>
 
@@ -518,7 +518,7 @@ nav {
       </div>
       <div class="delivery-row" id="deliveryPills">
         <div class="delivery-pill">🚚 ঢাকার ভেতরে ৳৮০</div>
-        <div class="delivery-pill">🚚 ঢাকার বাইরে ৳১৩০</div>
+        <div class="delivery-pill">🚚 ঢাকার বাইরে ৳১১০</div>
       </div>
     </div>
 
@@ -535,7 +535,7 @@ nav {
             <div class="option-desc">30ml · Single bottle</div>
           </div>
           <div class="option-price-col">
-            <div class="option-price">৳৮৫০</div>
+            <div class="option-price">৳৮৯০</div>
             <div class="option-price-sub">+ delivery</div>
           </div>
         </div>
@@ -548,7 +548,7 @@ nav {
             <div class="option-desc">30ml · Single bottle</div>
           </div>
           <div class="option-price-col">
-            <div class="option-price">৳৮৫০</div>
+            <div class="option-price">৳৮৯০</div>
             <div class="option-price-sub">+ delivery</div>
           </div>
         </div>
@@ -562,7 +562,7 @@ nav {
             <div class="option-desc">30ml each · Both bottles</div>
           </div>
           <div class="option-price-col">
-            <div class="option-price">৳১,৪০০</div>
+            <div class="option-price">৳১,৩৯০</div>
             <div class="option-price-sub">Free delivery 🎁</div>
           </div>
         </div>
@@ -573,6 +573,14 @@ nav {
     <!-- Mobile image grid -->
     <div style="border-bottom: 1px solid var(--gray-200); padding: 4px 0;">
       <div class="mobile-image-grid" id="mobileImageGrid"></div>
+    </div>
+
+    <!-- RETURN POLICY -->
+    <div style="padding: 16px 20px; background: #f9f9f7; border-bottom: 1px solid var(--gray-200);">
+      <div style="font-size: 13px; color: var(--gray-600); line-height: 1.85;">
+        <span style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--black); display: block; margin-bottom: 7px;">◼️ Return Policy</span>
+        ডেলিভারিম্যান থাকা অবস্থায় প্রোডাক্ট খুলে চেক করে নিতে পারবেন। আমরা সারা দেশে ক্যাশ অন হোম ডেলিভারি দিয়ে থাকি। সঠিক প্রোডাক্ট পাওয়ার পরে পছন্দ না হলে সেক্ষেত্রে ডেলিভারি চার্জ দিয়ে রিটার্ন করতে পারবেন। ডেলিভারিম্যান চলে যাওয়ার পর কোনো অভিযোগ গ্রহনযোগ্য হবেনা। কম্বোর প্রাইস সিংগেল প্রাইসের তুলনায় অনেকটাই ডিস্কাউন্টেড থাকে তাই একটা রেখে আরেকটা ফেরত দেয়ার অপশন নেই।
+      </div>
     </div>
 
     <!-- ORDER FORM -->
@@ -612,7 +620,7 @@ nav {
 
       <div class="order-total-box">
         <div class="total-label">Order Summary</div>
-        <div class="total-row main" id="summaryLine1"><span id="summaryProduct">Phantom Elixir + Executive Bleu (Combo)</span><span>Tk <span id="summaryBasePrice">1,400</span></span></div>
+        <div class="total-row main" id="summaryLine1"><span id="summaryProduct">Phantom Elixir + Executive Bleu (Combo)</span><span>Tk <span id="summaryBasePrice">1,390</span></span></div>
         <div class="total-row free-row" id="summaryFreeRow" style="display:flex"><span>Delivery</span><span>FREE 🎁</span></div>
         <div class="total-row" id="summaryDeliveryRow" style="display:none"><span>Delivery</span><span id="deliveryAmt">—</span></div>
         <hr class="total-divider">
@@ -678,7 +686,7 @@ nav {
         <div class="faq-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div>
           <div class="faq-q">Delivery charge ও সময়?</div>
-          <div class="faq-a">Combo তে ডেলিভারি সম্পূর্ণ বিনামূল্যে। Single bottle এ ঢাকার ভেতরে ৮০ টাকা, বাইরে ১৩০ টাকা। Order confirm হওয়ার পর ৪৮–৭২ ঘন্টায় পৌঁছে যাবে।</div>
+          <div class="faq-a">Combo তে ডেলিভারি সম্পূর্ণ বিনামূল্যে। Single bottle এ ঢাকার ভেতরে ৮০ টাকা, বাইরে ১১০ টাকা। Order confirm হওয়ার পর ৪৮–৭২ ঘন্টায় পৌঁছে যাবে।</div>
         </div>
       </div>
 
@@ -716,9 +724,9 @@ nav {
 let selectedOption = 'combo'; // 'phantom' | 'executive' | 'combo'
 
 const OPTION_CONFIG = {
-  phantom:   { price: 850,  priceDisplay: '৳৮৫০',  label: 'Phantom Elixir (30ml)',               freeDelivery: false },
-  executive: { price: 850,  priceDisplay: '৳৮৫০',  label: 'Executive Bleu (30ml)',               freeDelivery: false },
-  combo:     { price: 1400, priceDisplay: '৳১,৪০০', label: 'Phantom Elixir + Executive Bleu (Combo)', freeDelivery: true  }
+  phantom:   { price: 890,  priceDisplay: '৳৮৯০',  label: 'Phantom Elixir (30ml)',               freeDelivery: false },
+  executive: { price: 890,  priceDisplay: '৳৮৯০',  label: 'Executive Bleu (30ml)',               freeDelivery: false },
+  combo:     { price: 1390, priceDisplay: '৳১,৩৯০', label: 'Phantom Elixir + Executive Bleu (Combo)', freeDelivery: true  }
 };
 
 function selectOption(key) {
@@ -749,7 +757,7 @@ function selectOption(key) {
 
   // Update order summary
   document.getElementById('summaryProduct').textContent = cfg.label;
-  document.getElementById('summaryBasePrice').textContent = cfg.price === 1400 ? '1,400' : '850';
+  document.getElementById('summaryBasePrice').textContent = cfg.price === 1390 ? '1,390' : '890';
 
   if (cfg.freeDelivery) {
     document.getElementById('summaryFreeRow').style.display = 'flex';
@@ -757,7 +765,7 @@ function selectOption(key) {
     // Total is just the base price, no district needed
     document.getElementById('totalFinal').style.display = 'flex';
     document.getElementById('totalPending').style.display = 'none';
-    document.getElementById('totalAmt').textContent = 'Tk 1,400';
+    document.getElementById('totalAmt').textContent = 'Tk 1,390';
   } else {
     document.getElementById('summaryFreeRow').style.display = 'none';
     document.getElementById('summaryDeliveryRow').style.display = '';
@@ -879,7 +887,7 @@ function updateTotal() {
     document.getElementById('deliveryAmt').textContent = 'FREE';
     document.getElementById('totalFinal').style.display = 'flex';
     document.getElementById('totalPending').style.display = 'none';
-    document.getElementById('totalAmt').textContent = 'Tk 1,400';
+    document.getElementById('totalAmt').textContent = 'Tk 1,390';
     return;
   }
   if (!selectedDistrict) {
@@ -888,7 +896,7 @@ function updateTotal() {
     document.getElementById('totalPending').style.display = 'block';
     return;
   }
-  const delivery = selectedDistrict.toLowerCase() === 'dhaka' ? 80 : 130;
+  const delivery = selectedDistrict.toLowerCase() === 'dhaka' ? 80 : 110;
   const base = OPTION_CONFIG[selectedOption].price;
   const total = base + delivery;
   document.getElementById('deliveryAmt').textContent    = 'Tk ' + delivery;
@@ -923,7 +931,7 @@ function submitOrder() {
   if (!valid) { document.getElementById('orderFormBlock').scrollIntoView({ behavior:'smooth', block:'start' }); return; }
 
   const cfg = OPTION_CONFIG[selectedOption];
-  const delivery = cfg.freeDelivery ? 0 : (selectedDistrict.toLowerCase() === 'dhaka' ? 80 : 130);
+  const delivery = cfg.freeDelivery ? 0 : (selectedDistrict.toLowerCase() === 'dhaka' ? 80 : 110);
   const total    = cfg.price + delivery;
 
   const btn = document.getElementById('confirmBtn');
@@ -939,7 +947,7 @@ function submitOrder() {
     total: 'Tk ' + total,
     timestamp: new Date().toLocaleString('en-BD', { timeZone:'Asia/Dhaka' })
   };
-  const params = new URLSearchParams({ name, phone, district: payload.district, delivery: delivery, total });
+  const params = new URLSearchParams({ name, phone, district: payload.district, delivery: delivery, total, order: selectedOption });
 
   fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) })
     .then(()  => window.location.href = 'thankyou.html?' + params.toString())
