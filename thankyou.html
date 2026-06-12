@@ -141,7 +141,7 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"/></
     combo:     [{ name: 'Phantom Elixir (30ml)', free: false }, { name: 'Executive Bleu (30ml)', free: false }]
   };
 
-  const BASE_PRICES = { phantom: 850, executive: 850, combo: 1400 };
+  const BASE_PRICES = { phantom: 890, executive: 890, combo: 1390 };
 
   const items = ORDERS[orderKey] || ORDERS['combo'];
   items.forEach(item => {
@@ -152,7 +152,7 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"/></
   });
 
   // Base price
-  const basePrice = BASE_PRICES[orderKey] || 1400;
+  const basePrice = BASE_PRICES[orderKey] || 1390;
   document.getElementById('sumBasePrice').textContent = 'Tk ' + basePrice.toLocaleString();
 
   // Delivery row
