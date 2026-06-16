@@ -765,14 +765,12 @@ function selectOption(key) {
   if (cfg.freeDelivery) {
     document.getElementById('summaryFreeRow').style.display = 'flex';
     document.getElementById('summaryDeliveryRow').style.display = 'none';
-    // Total is just the base price, no district needed
     document.getElementById('totalFinal').style.display = 'flex';
     document.getElementById('totalPending').style.display = 'none';
     document.getElementById('totalAmt').textContent = 'Tk 1,390';
   } else {
     document.getElementById('summaryFreeRow').style.display = 'none';
     document.getElementById('summaryDeliveryRow').style.display = '';
-    // Re-trigger district total calc
     updateTotal();
   }
 }
@@ -922,13 +920,9 @@ function submitOrder() {
   const pc = phone.replace(/\D/g,'');
   if (pc.length !== 11 || !pc.startsWith('01')) { showErr('fieldPhone','errPhone'); valid = false; } else clearErr('fieldPhone','errPhone');
 
-  // District only required for singles
-  if (selectedOption !== 'combo') {
-    if (!selectedDistrict) { document.getElementById('errDistrict').classList.add('show'); valid = false; }
-    else document.getElementById('errDistrict').classList.remove('show');
-  } else {
-    document.getElementById('errDistrict').classList.remove('show');
-  }
+  // District required for all options
+  if (!selectedDistrict) { document.getElementById('errDistrict').classList.add('show'); valid = false; }
+  else document.getElementById('errDistrict').classList.remove('show');
 
   if (!address) { showErr('fieldAddress','errAddress'); valid = false; } else clearErr('fieldAddress','errAddress');
   if (!valid) { document.getElementById('orderFormBlock').scrollIntoView({ behavior:'smooth', block:'start' }); return; }
@@ -943,7 +937,7 @@ function submitOrder() {
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzGmzzk4eOGWe_JBMotAdTLYROVzG1HUFFWZgNGRMeqs62fwQzRbIvZvUyS8wygmlRA/exec';
   const payload = {
     name, phone,
-    district: selectedOption === 'combo' ? (selectedDistrict || 'N/A') : selectedDistrict,
+    district: selectedDistrict,
     address,
     order: cfg.label,
     delivery: cfg.freeDelivery ? 'FREE' : 'Tk ' + delivery,
