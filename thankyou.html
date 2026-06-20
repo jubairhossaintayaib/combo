@@ -130,18 +130,19 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"/></
   set('sumDistrict', params.get('district'));
 
   const orderKey   = params.get('order');   // 'phantom' | 'executive' | 'combo'
+  const couponUsed = params.get('coupon') === '1';
   const delivery   = parseInt(params.get('delivery'));
   const total      = parseInt(params.get('total'));
 
   // Build order items based on what was ordered
   const itemsContainer = document.getElementById('orderItemsContainer');
   const ORDERS = {
-    phantom:   [{ name: 'Phantom Elixir (30ml)', free: false }],
-    executive: [{ name: 'Executive Bleu (30ml)', free: false }],
-    combo:     [{ name: 'Phantom Elixir (30ml)', free: false }, { name: 'Executive Bleu (30ml)', free: false }]
+    phantom:   [{ name: 'Phantom Elixir (30ml)' }],
+    executive: [{ name: 'Executive Bleu (30ml)' }],
+    combo:     [{ name: 'Phantom Elixir (30ml)' }, { name: 'Executive Bleu (30ml)' }]
   };
 
-  const BASE_PRICES = { phantom: 890, executive: 890, combo: 1390 };
+  const BASE_PRICES = { phantom: 890, executive: 890, combo: 1780 };
 
   const items = ORDERS[orderKey] || ORDERS['combo'];
   items.forEach(item => {
@@ -151,20 +152,17 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"/></
     itemsContainer.appendChild(div);
   });
 
-  // Base price
-  const basePrice = BASE_PRICES[orderKey] || 1390;
-  document.getElementById('sumBasePrice').textContent = 'Tk ' + basePrice.toLocaleString();
+  // Base price (with coupon discount shown if applied)
+  const fullPrice = BASE_PRICES[orderKey] || 1780;
+  if (orderKey === 'combo' && couponUsed) {
+    document.getElementById('sumBasePrice').innerHTML =
+      '<span style="text-decoration:line-through;color:var(--gray-400);margin-right:6px;">Tk ' + fullPrice.toLocaleString() + '</span>Tk ' + (fullPrice - 300).toLocaleString();
+  } else {
+    document.getElementById('sumBasePrice').textContent = 'Tk ' + fullPrice.toLocaleString();
+  }
 
-  // Delivery row
-  if (orderKey === 'combo' || delivery === 0) {
-    document.getElementById('sumDelivery').innerHTML = 'FREE <span class="free-delivery-badge">🎁 Free</span>';
-    document.getElementById('sumDelivery').style.color = '#1a7a40';
-    // Hide district row for combo if no district was passed
-    const district = params.get('district');
-    if (!district || district === 'N/A') {
-      document.getElementById('sumDistrictRow').style.display = 'none';
-    }
-  } else if (!isNaN(delivery)) {
+  // Delivery row — everyone pays delivery now
+  if (!isNaN(delivery)) {
     document.getElementById('sumDelivery').textContent = 'Tk ' + delivery;
   }
 
@@ -172,12 +170,12 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"/></
   if (!isNaN(total)) {
     document.getElementById('sumTotal').textContent = 'Tk ' + total.toLocaleString();
   } else {
-    document.getElementById('sumTotal').textContent = 'Tk ' + basePrice.toLocaleString() + (orderKey === 'combo' ? '' : ' + delivery');
+    document.getElementById('sumTotal').textContent = 'Tk ' + fullPrice.toLocaleString() + ' + delivery';
   }
 
   // Facebook Purchase event
   fbq('track', 'Purchase', {
-    value: isNaN(total) ? basePrice : total,
+    value: isNaN(total) ? fullPrice : total,
     currency: 'BDT',
     content_type: 'product',
     content_name: 'Celures — ' + (orderKey === 'combo' ? 'Phantom Elixir + Executive Bleu Combo' : orderKey === 'phantom' ? 'Phantom Elixir' : 'Executive Bleu')
