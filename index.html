@@ -630,7 +630,7 @@ nav {
         Order confirm এর সময় "DEAL300" কুপন ব্যবহার করে ৳300 discount নিন
       </div>
       <div class="delivery-row" id="deliveryPills">
-        <div class="delivery-pill">🚚 ডেলিভারি চার্জ — ঢাকার ভেতরে ৳৮০, বাইরে ৳১২০</div>
+        <div class="delivery-pill">🚚 ডেলিভারি চার্জ — ঢাকার ভেতরে ৳৭০, বাইরে ৳১১০</div>
       </div>
     </div>
 
@@ -852,7 +852,7 @@ nav {
         <div class="faq-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div>
           <div class="faq-q">Delivery charge ও সময়?</div>
-          <div class="faq-a">ঢাকার ভেতরে ৮০ টাকা, বাইরে ১২০ টাকা — Single bottle হোক বা Combo, সব order এ একই delivery charge প্রযোজ্য। Order confirm হওয়ার পর ৪৮–৭২ ঘন্টায় পৌঁছে যাবে।</div>
+          <div class="faq-a">ঢাকার ভেতরে ৭০ টাকা, বাইরে ১১০ টাকা — Single bottle হোক বা Combo, সব order এ একই delivery charge প্রযোজ্য। Order confirm হওয়ার পর ৪৮–৭২ ঘন্টায় পৌঁছে যাবে।</div>
         </div>
       </div>
 
@@ -1129,7 +1129,7 @@ function updateTotal() {
     document.getElementById('totalPending').style.display = 'block';
     return;
   }
-  const delivery = selectedDistrict.toLowerCase() === 'dhaka' ? 80 : 120;
+  const delivery = selectedDistrict.toLowerCase() === 'dhaka' ? 70 : 110;
   const base = getCurrentPrice();
   const total = base + delivery;
   document.getElementById('deliveryAmt').textContent    = 'Tk ' + delivery;
@@ -1179,7 +1179,7 @@ function submitOrder() {
   if (!valid) { document.getElementById('orderFormBlock').scrollIntoView({ behavior:'smooth', block:'start' }); return; }
 
   const cfg = OPTION_CONFIG[selectedOption];
-  const delivery = selectedDistrict.toLowerCase() === 'dhaka' ? 80 : 120;
+  const delivery = selectedDistrict.toLowerCase() === 'dhaka' ? 70 : 110;
   const basePrice = getCurrentPrice();
   const total    = basePrice + delivery;
 
