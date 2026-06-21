@@ -283,16 +283,19 @@ nav {
 }
 .gift-price-tag {
   position: absolute;
-  top: 8px; left: 8px;
+  top: 10px; left: 50%;
+  transform: translateX(-50%);
   background: #e8722c;
   color: #fff;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
-  padding: 3px 9px;
-  border-radius: 6px;
+  padding: 5px 14px;
+  border-radius: 20px;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 .gift-price-old {
   text-decoration: line-through;
@@ -413,6 +416,44 @@ nav {
   margin: 0 -16px;
   text-align: center;
   border-radius: 0 0 8px 8px;
+}
+
+.combo-value-stack {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 4px 8px 14px;
+  flex-wrap: nowrap;
+}
+.stack-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+.stack-item img {
+  width: 100%;
+  max-width: 56px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--gray-200);
+  background: var(--gray-100);
+}
+.stack-label {
+  font-size: 9.5px;
+  color: var(--gray-600);
+  margin-top: 4px;
+  text-align: center;
+  line-height: 1.2;
+}
+.stack-plus {
+  font-size: 16px;
+  color: var(--gray-400);
+  font-weight: 300;
+  flex-shrink: 0;
 }
 .option-tab.combo-with-bar.selected {
   background: var(--gray-100);
@@ -776,6 +817,15 @@ nav {
               <div class="option-price-sub">+ delivery</div>
             </div>
           </div>
+          <div class="combo-value-stack">
+            <div class="stack-item"><img src="images/elixir.png" alt="Phantom Elixir"><span class="stack-label">Phantom Elixir</span></div>
+            <span class="stack-plus">+</span>
+            <div class="stack-item"><img src="images/executive-bleu.png" alt="Executive Bleu"><span class="stack-label">Executive Bleu</span></div>
+            <span class="stack-plus">+</span>
+            <div class="stack-item"><img src="images/gift1.png" alt="Invictus Gift"><span class="stack-label">Invictus Gift</span></div>
+            <span class="stack-plus">+</span>
+            <div class="stack-item"><img src="images/gift2.png" alt="Lacoste Blanc Gift"><span class="stack-label">Lacoste Gift</span></div>
+          </div>
           <div class="combo-coupon-bar">
             🎉 <strong>DEAL300</strong> কুপন ব্যবহার করলে কম্বো প্রাইস হবে মাত্র <strong>৳১,৪৮০</strong>
           </div>
@@ -846,6 +896,7 @@ nav {
       <div class="order-total-box">
         <div class="total-label">Order Summary</div>
         <div class="total-row main" id="summaryLine1"><span id="summaryProduct">Phantom Elixir + Executive Bleu (Combo)</span><span>Tk <span id="summaryBasePrice">1,780</span></span></div>
+        <div class="total-row free-row" id="summaryGiftsRow" style="display:flex"><span>🎁 Free Gift: Invictus 5ml + Lacoste Blanc 5ml</span><span>FREE</span></div>
         <div class="total-row" id="summaryDeliveryRow"><span>Delivery</span><span id="deliveryAmt">—</span></div>
         <hr class="total-divider">
         <div class="total-final" id="totalFinal" style="display:none">
@@ -878,7 +929,7 @@ nav {
         <div class="faq-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div>
           <div class="faq-q">এই offer এ কী পাবো?</div>
-          <div class="faq-a">Combo নিলে Phantom Elixir (30ml) + Executive Bleu (30ml) — দুটো premium perfume মাত্র ১,৭৮০ টাকায়। আর "DEAL300" কুপন কোড use করলে ৩০০ টাকা ছাড়ে পাবেন মাত্র ১,৪৮০ টাকায় (+ ডেলিভারি চার্জ)।</div>
+          <div class="faq-a">Combo নিলে Phantom Elixir (30ml) + Executive Bleu (30ml) — দুটো premium perfume মাত্র ১,৭৮০ টাকায়। আর "DEAL300" কুপন কোড use করলে ৩০০ টাকা ছাড়ে পাবেন মাত্র ১,৪৮০ টাকায় (+ ডেলিভারি চার্জ)। এর সাথে আরো পাবেন ২টি FREE Gift — Invictus 5ml এবং Lacoste Blanc 5ml, সম্পূর্ণ বিনামূল্যে! 🎁</div>
         </div>
       </div>
 
@@ -902,7 +953,7 @@ nav {
         <div class="faq-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div>
           <div class="faq-q">এগুলো কি original নাকি inspired?</div>
-          <div class="faq-a">এগুলো inspired version — বিশ্বখ্যাত luxury brands এর inspiration এ তৈরি। Same scent, same feel — তবে অনেক সাশ্রয়ী দামে।<br><br>আমরা শুধুমাত্র বিশ্বের সেরা fragrance company — <strong>LUZI</strong> — এর perfume oil ব্যবহার করি। এই কোম্পানি Chanel, Dior, Armani সহ বিশ্বের বড় বড় brands এর perfume তৈরিতেও raw material সরবরাহ করে।</div>
+          <div class="faq-a">এগুলো inspired version — বিশ্বখ্যাত luxury brands এর inspiration এ তৈরি। Same scent, same feel — তবে অনেক সাশ্রয়ী দামে।<br><br>আমরা শুধুমাত্র বিশ্বের সেরা fragrance company — <strong>LUZI</strong> — এর perfume oil ব্যবহার করি। এই কোম্পানি Chanel, Dior, Armani সহ বিশ্বের বড় বড় brands এর perfume তৈরিতেও raw material সরবরাহ করে।<br><br>Combo এর সাথে যে FREE Gift দুটো পাবেন, সেগুলোও inspired version — একটি Paco Rabanne Invictus এবং অন্যটি Lacoste Blanc এর inspiration এ তৈরি।</div>
         </div>
       </div>
 
@@ -1051,6 +1102,9 @@ function refreshPriceDisplay() {
   } else {
     document.getElementById('summaryBasePrice').textContent = formatTk(cfg.price);
   }
+
+  // Free gifts row — only for combo
+  document.getElementById('summaryGiftsRow').style.display = (selectedOption === 'combo') ? 'flex' : 'none';
 }
 
 // ── IMAGE GRID ──
