@@ -637,7 +637,7 @@ nav {
     <!-- ── OPTION TABS ── -->
     <div class="option-tabs-section">
       <div class="countdown-box" id="countdownBox">
-        <div class="countdown-label" id="countdownLabel">এই অফারটি ২৭ জুন পর্যন্ত চলবে</div>
+        <div class="countdown-label" id="countdownLabel">এই অফারটি ২০ জুলাই রাত ১:০০ পর্যন্ত চলবে</div>
         <div class="countdown-units">
           <div class="countdown-unit"><div class="countdown-num" id="cdDays">--</div><div class="countdown-unit-label">দিন</div></div>
           <div class="countdown-sep">:</div>
@@ -1008,32 +1008,34 @@ function initImageGrids() {
 initImageGrids();
 
 // ── COUNTDOWN TIMER ──
-// Offer cycles weekly: ends every Saturday 11:59:59 PM (Asia/Dhaka time).
-// First cycle: ends 27 June 2026. Next cycle: ends 4 July 2026. Repeats every 7 days after.
-function getDhakaNow() {
-  // Get current time shifted to Asia/Dhaka (UTC+6)
-  const now = new Date();
-  const utcMs = now.getTime() + (now.getTimezoneOffset() * 60000);
-  const dhakaMs = utcMs + (6 * 60 * 60000);
-  return new Date(dhakaMs);
-}
+// One-time deadline: 20 July 2026, 1:00 AM Dhaka time (= 19 July 2026, 19:00:00 UTC).
+// After this passes, the offer/coupon is no longer valid — no repeat.
+const OFFER_DEADLINE_UTC = new Date(Date.UTC(2026, 6, 19, 19, 0, 0)); // month is 0-indexed: 6 = July
 
-function getNextDeadline() {
-  // Base deadline: Saturday 27 June 2026, 23:59:59 Dhaka time
-  let deadline = new Date(Date.UTC(2026, 5, 27, 17, 59, 59)); // 23:59:59 +6 = 17:59:59 UTC
-  const nowUtc = new Date();
-  // Keep adding 7 days until deadline is in the future
-  while (deadline.getTime() <= nowUtc.getTime()) {
-    deadline = new Date(deadline.getTime() + 7 * 24 * 60 * 60 * 1000);
-  }
-  return deadline;
+function isOfferActive() {
+  return new Date().getTime() < OFFER_DEADLINE_UTC.getTime();
 }
 
 function updateCountdown() {
-  const deadline = getNextDeadline();
   const now = new Date();
-  let diff = deadline.getTime() - now.getTime();
-  if (diff < 0) diff = 0;
+  let diff = OFFER_DEADLINE_UTC.getTime() - now.getTime();
+
+  if (diff <= 0) {
+    document.getElementById('cdDays').textContent    = '0';
+    document.getElementById('cdHours').textContent    = '00';
+    document.getElementById('cdMinutes').textContent  = '00';
+    document.getElementById('cdSeconds').textContent   = '00';
+    document.getElementById('countdownLabel').textContent = 'অফারটি শেষ হয়ে গেছে';
+    // Disable coupon button if offer has ended
+    const btn = document.getElementById('couponBtn');
+    if (btn && !couponApplied) {
+      btn.disabled = true;
+      btn.textContent = 'অফার শেষ হয়ে গেছে';
+      btn.classList.remove('coupon-btn-glow');
+    }
+    clearInterval(countdownInterval);
+    return;
+  }
 
   const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
   const hours   = Math.floor((diff / (1000 * 60 * 60)) % 24);
@@ -1048,7 +1050,7 @@ function updateCountdown() {
 }
 
 updateCountdown();
-setInterval(updateCountdown, 1000);
+const countdownInterval = setInterval(updateCountdown, 1000);
 
 // Init combo as selected on load
 selectOption('combo');
@@ -1142,6 +1144,13 @@ document.getElementById('fieldPhone').addEventListener('input', function() {
 
 function applyCoupon() {
   if (couponApplied) return;
+  if (!isOfferActive()) {
+    const btn = document.getElementById('couponBtn');
+    btn.disabled = true;
+    btn.textContent = 'অফার শেষ হয়ে গেছে';
+    btn.classList.remove('coupon-btn-glow');
+    return;
+  }
   couponApplied = true;
   refreshPriceDisplay();
   updateTotal();
