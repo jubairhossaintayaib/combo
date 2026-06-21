@@ -219,7 +219,38 @@ nav {
 
 /* ── DYNAMIC PRICE ── */
 .price-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
-.price-new { font-family: var(--serif); font-size: 32px; font-weight: 400; color: var(--gray-600); line-height: 1; }
+.price-card-old {
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 8px 16px;
+  text-align: center;
+  line-height: 1.3;
+}
+.price-card-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
+  color: var(--gray-600);
+}
+.price-card-amount {
+  font-family: var(--serif); font-size: 26px; font-weight: 400; color: var(--gray-500, #999);
+}
+.price-card-amount.strikethrough { text-decoration: line-through; }
+
+.price-card-new {
+  background: #1a7a40;
+  color: #fff;
+  border-radius: 10px;
+  padding: 8px 18px;
+  text-align: center;
+  line-height: 1.3;
+}
+.price-card-label-green {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
+  opacity: 0.95;
+}
+.price-card-amount-green {
+  font-family: var(--serif); font-size: 32px; font-weight: 700; color: #fff;
+}
 .free-delivery-tag {
   font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
   background: #e8f5e9; color: #1a7a40; border: 1px solid #b6e2c8;
@@ -261,6 +292,47 @@ nav {
   padding: 18px 20px;
 }
 @media (min-width: 900px) { .free-gifts-grid { padding: 20px 40px; } }
+
+.discount-applied-card {
+  grid-column: 1 / -1;
+  background: #eafaf0;
+  border: 1.5px solid #1a7a40;
+  border-radius: 10px;
+  padding: 12px 16px;
+  text-align: center;
+  position: relative;
+}
+.discount-applied-badge {
+  position: absolute;
+  top: -10px; right: 14px;
+  background: #1a7a40;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+.discount-applied-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a7a40;
+  margin-bottom: 4px;
+}
+.discount-applied-amount {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--black);
+}
+.discount-old {
+  text-decoration: line-through;
+  color: var(--gray-400);
+  font-weight: 400;
+}
+.discount-new {
+  color: #1a7a40;
+  font-weight: 700;
+}
 .gift-card {
   display: flex;
   flex-direction: column;
@@ -475,6 +547,15 @@ nav {
 .option-tab.selected .option-radio svg { display: block; }
 .option-radio::after { display: none; }
 
+.option-thumb {
+  width: 38px; height: 38px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--gray-200);
+  background: var(--gray-100);
+}
+
 .option-text { flex: 1; }
 .option-name { font-size: 15px; font-weight: 500; color: var(--black); line-height: 1.3; }
 .option-desc { font-size: 13px; color: var(--gray-600); margin-top: 2px; }
@@ -649,21 +730,6 @@ nav {
 .confirm-btn:hover { opacity: 0.8; }
 .confirm-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 
-/* Coupon button glow/pulse effect */
-.coupon-btn-glow {
-  animation: couponPulse 1.4s ease-in-out infinite;
-}
-@keyframes couponPulse {
-  0%   { box-shadow: 0 0 0 0 rgba(26,122,64,0.55); transform: scale(1); }
-  50%  { box-shadow: 0 0 0 10px rgba(26,122,64,0); transform: scale(1.015); }
-  100% { box-shadow: 0 0 0 0 rgba(26,122,64,0); transform: scale(1); }
-}
-.coupon-btn-applied {
-  animation: none !important;
-  background: var(--black) !important;
-  opacity: 1 !important;
-  cursor: default !important;
-}
 .form-note { font-size: 13px; color: var(--gray-400); text-align: center; margin-top: 12px; line-height: 1.7; }
 
 .toast {
@@ -681,8 +747,8 @@ nav {
 
 <div class="marquee-banner">
   <div class="marquee-track">
-    <span>🎉 Get ৳300 discount on our perfume combo! Use code "DEAL300" to get your discount!</span>
-    <span>🎉 Get ৳300 discount on our perfume combo! Use code "DEAL300" to get your discount!</span>
+    <span>🏆 World Cup Special! Combo Price ৳1,780 থেকে কমে এখন মাত্র ৳1,480 — সাথে ২টি FREE Gift!</span>
+    <span>🏆 World Cup Special! Combo Price ৳1,780 থেকে কমে এখন মাত্র ৳1,480 — সাথে ২টি FREE Gift!</span>
   </div>
 </div>
 
@@ -716,23 +782,26 @@ nav {
         <span class="badge badge-sale">Limited Offer 🔥</span>
       </div>
 
-      <h1 class="product-title">Phantom Elixir <span class="ml-label">(30ml)</span><span class="plus-sign"> + </span>Executive Bleu <span class="ml-label">(30ml)</span></h1>
+      <h1 class="product-title">Phantom Elixir <span class="ml-label">(30ml)</span><span class="plus-sign"> + </span>Executive Bleu <span class="ml-label">(30ml)</span><span class="plus-sign"> + </span><span style="font-size: 0.6em; font-weight: 500; color: #1a7a40;">2টা perfume free gift</span></h1>
 
       <div style="font-size: 13px; color: var(--gray-600); margin-bottom: 16px; font-style: italic;">Inspired by Dior Sauvage Elixir & Bleu de Chanel</div>
 
       <hr class="divider-line">
 
       <div class="price-row">
-        <div class="price-new" id="dynamicPrice">৳১,৭৮০</div>
-        <div id="couponPriceCard" style="display:none; background:#1a7a40; color:#fff; border-radius:10px; padding:8px 18px; text-align:center; line-height:1.3;">
-          <div style="font-size:10px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; opacity:0.9;">Coupon ব্যবহার করলে</div>
-          <div style="font-size:32px; font-weight:700; font-family:var(--serif);" id="couponPriceCardAmount">৳১,৪৮০</div>
+        <div class="price-card-old">
+          <div class="price-card-label">Normal Price</div>
+          <div class="price-card-amount strikethrough" id="dynamicPriceOld">৳১,৭৮০</div>
+        </div>
+        <div class="price-card-new" id="couponPriceCard">
+          <div class="price-card-label-green">🏆 World Cup Discount</div>
+          <div class="price-card-amount-green" id="dynamicPrice">৳১,৪৮০</div>
         </div>
       </div>
 
       <div class="cod-badge">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        Order confirm এর সময় "DEAL300" কুপন ব্যবহার করে ৳300 discount নিন
+        Cash on Delivery — পণ্য পেয়ে টাকা দিন
       </div>
     </div>
 
@@ -753,6 +822,11 @@ nav {
             <div class="gift-price-tag"><span class="gift-price-old">৳150</span> FREE</div>
           </div>
           <div class="gift-name">5 ml Lacoste Blanc</div>
+        </div>
+        <div class="discount-applied-card">
+          <div class="discount-applied-badge">✓ Applied</div>
+          <div class="discount-applied-text">🏆 World Cup Discount</div>
+          <div class="discount-applied-amount"><span class="discount-old">৳১,৭৮০</span> → <span class="discount-new">৳১,৪৮০</span></div>
         </div>
       </div>
     </div>
@@ -777,6 +851,7 @@ nav {
         <!-- Option 1: Phantom Elixir single -->
         <div class="option-tab" id="tab-phantom" onclick="selectOption('phantom')">
           <div class="option-radio"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <img class="option-thumb" src="images/elixir.png" alt="Phantom Elixir">
           <div class="option-text">
             <div class="option-name">Phantom Elixir</div>
             <div class="option-desc">30ml · Single bottle</div>
@@ -791,6 +866,7 @@ nav {
         <!-- Option 2: Executive Bleu single -->
         <div class="option-tab" id="tab-executive" onclick="selectOption('executive')">
           <div class="option-radio"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <img class="option-thumb" src="images/executive-bleu.png" alt="Executive Bleu">
           <div class="option-text">
             <div class="option-name">Executive Bleu</div>
             <div class="option-desc">30ml · Single bottle</div>
@@ -813,7 +889,7 @@ nav {
               <div class="option-selected-label">✓ Selected</div>
             </div>
             <div class="option-price-col">
-              <div class="option-price">৳১,৭৮০</div>
+              <div class="option-price"><span style="text-decoration:line-through; color:rgba(0,0,0,0.4); font-size:0.65em; margin-right:6px;">৳১,৭৮০</span>৳১,৪৮০</div>
               <div class="option-price-sub">+ delivery</div>
             </div>
           </div>
@@ -827,7 +903,7 @@ nav {
             <div class="stack-item"><img src="images/gift2.png" alt="Lacoste Blanc Gift"><span class="stack-label">Lacoste Gift</span></div>
           </div>
           <div class="combo-coupon-bar">
-            🎉 <strong>DEAL300</strong> কুপন ব্যবহার করলে কম্বো প্রাইস হবে মাত্র <strong>৳১,৪৮০</strong>
+            🏆 World Cup Discount — Combo Price মাত্র <strong>৳১,৪৮০</strong> (normal ৳১,৭৮০)
           </div>
         </div>
 
@@ -876,23 +952,6 @@ nav {
         <div class="error-msg" id="errAddress">Please enter your delivery address.</div>
       </div>
 
-      <!-- COUPON SECTION (only visible for combo) -->
-      <div id="couponSection" style="display:block; margin-bottom: 16px;">
-        <div style="background: var(--gray-100); border: 1.5px dashed var(--gray-400); border-radius: 10px; padding: 14px 16px;">
-          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom: 10px;">
-            <div>
-              <div style="font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--gray-600); margin-bottom:3px;">Coupon Code</div>
-              <div style="font-size:18px; font-weight:700; letter-spacing:1px; color:var(--black);">DEAL300</div>
-            </div>
-            <div style="font-size:12px; color:#1a7a40; font-weight:600;">৳300 OFF</div>
-          </div>
-          <button type="button" id="couponBtn" class="coupon-btn-glow" onclick="applyCoupon()"
-            style="width:100%; height:48px; background:#1a7a40; color:#fff; border:none; border-radius:8px; font-family:var(--sans); font-size:15px; font-weight:600; cursor:pointer;">
-            👉 ডিসকাউন্ট পেতে এখানে ক্লিক করুন
-          </button>
-        </div>
-      </div>
-
       <div class="order-total-box">
         <div class="total-label">Order Summary</div>
         <div class="total-row main" id="summaryLine1"><span id="summaryProduct">Phantom Elixir + Executive Bleu (Combo)</span><span>Tk <span id="summaryBasePrice">1,780</span></span></div>
@@ -929,7 +988,7 @@ nav {
         <div class="faq-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div>
           <div class="faq-q">এই offer এ কী পাবো?</div>
-          <div class="faq-a">Combo নিলে Phantom Elixir (30ml) + Executive Bleu (30ml) — দুটো premium perfume মাত্র ১,৭৮০ টাকায়। আর "DEAL300" কুপন কোড use করলে ৩০০ টাকা ছাড়ে পাবেন মাত্র ১,৪৮০ টাকায় (+ ডেলিভারি চার্জ)। এর সাথে আরো পাবেন ২টি FREE Gift — Invictus 5ml এবং Lacoste Blanc 5ml, সম্পূর্ণ বিনামূল্যে! 🎁</div>
+          <div class="faq-a">Combo এর normal price ১,৭৮০ টাকা। কিন্তু এখন চলছে 🏆 World Cup Discount — তাই কোনো কুপন কোড ছাড়াই, automatically দাম কমে হয়ে যাচ্ছে মাত্র ১,৪৮০ টাকা (+ ডেলিভারি চার্জ)। এর সাথে আরো পাবেন ২টি FREE Gift — Invictus 5ml এবং Lacoste Blanc 5ml, সম্পূর্ণ বিনামূল্যে! 🎁</div>
         </div>
       </div>
 
@@ -1021,22 +1080,18 @@ nav {
 // ── OPTION SELECTION STATE ──
 // Default: combo selected
 let selectedOption = 'combo'; // 'phantom' | 'executive' | 'combo'
-let couponApplied = false;
 let selectedDistrict = "";
 
 const OPTION_CONFIG = {
   phantom:   { price: 890,  priceDisplay: '৳৮৯০',  label: 'Phantom Elixir (30ml)' },
   executive: { price: 890,  priceDisplay: '৳৮৯০',  label: 'Executive Bleu (30ml)' },
-  combo:     { price: 1780, priceDisplay: '৳১,৭৮০', label: 'Phantom Elixir + Executive Bleu (Combo)' }
+  combo:     { price: 1780, discountedPrice: 1480, priceDisplay: '৳১,৭৮০', discountedDisplay: '৳১,৪৮০', label: 'Phantom Elixir + Executive Bleu (Combo)' }
 };
-
-const COUPON_DISCOUNT = 300;
-const COUPON_CODE = 'DEAL300';
 
 function getCurrentPrice() {
   const cfg = OPTION_CONFIG[selectedOption];
-  if (selectedOption === 'combo' && couponApplied) {
-    return cfg.price - COUPON_DISCOUNT;
+  if (selectedOption === 'combo' && isOfferActive()) {
+    return cfg.discountedPrice;
   }
   return cfg.price;
 }
@@ -1053,26 +1108,11 @@ function bnDigits(str) {
 function selectOption(key) {
   selectedOption = key;
 
-  // Reset coupon if switching away from combo
-  if (key !== 'combo') {
-    couponApplied = false;
-    const btn = document.getElementById('couponBtn');
-    if (btn) {
-      btn.textContent = '👉 ডিসকাউন্ট পেতে এখানে ক্লিক করুন';
-      btn.classList.remove('coupon-btn-applied');
-      btn.classList.add('coupon-btn-glow');
-      btn.disabled = false;
-    }
-  }
-
   // Update tab states
   ['phantom','executive','combo'].forEach(k => {
     const tab = document.getElementById('tab-' + k);
     tab.classList.toggle('selected', k === key);
   });
-
-  // Show/hide coupon section — only relevant for combo
-  document.getElementById('couponSection').style.display = (key === 'combo') ? 'block' : 'none';
 
   refreshPriceDisplay();
   updateTotal();
@@ -1080,24 +1120,30 @@ function selectOption(key) {
 
 function refreshPriceDisplay() {
   const cfg = OPTION_CONFIG[selectedOption];
-  const finalPrice = getCurrentPrice();
+  const offerActive = isOfferActive();
 
-  // Headline price — always show the base price plainly
-  const dynamicPriceEl = document.getElementById('dynamicPrice');
-  dynamicPriceEl.textContent = cfg.priceDisplay;
+  // Headline price cards — only relevant for combo (dual price display)
+  const oldCardEl = document.getElementById('dynamicPriceOld').closest('.price-card-old');
+  const newCardEl = document.getElementById('couponPriceCard');
 
-  // Green coupon price card — visible only for combo
-  const couponCard = document.getElementById('couponPriceCard');
-  if (selectedOption === 'combo') {
-    couponCard.style.display = 'block';
-    document.getElementById('couponPriceCardAmount').textContent = '৳' + bnDigits(formatTk(cfg.price - COUPON_DISCOUNT));
+  if (selectedOption === 'combo' && offerActive) {
+    oldCardEl.style.display = 'block';
+    newCardEl.style.display = 'block';
+    document.getElementById('dynamicPriceOld').textContent = cfg.priceDisplay;
+    document.getElementById('dynamicPrice').textContent = cfg.discountedDisplay;
+  } else if (selectedOption === 'combo') {
+    oldCardEl.style.display = 'none';
+    newCardEl.style.display = 'block';
+    document.getElementById('dynamicPrice').textContent = cfg.priceDisplay;
   } else {
-    couponCard.style.display = 'none';
+    oldCardEl.style.display = 'none';
+    newCardEl.style.display = 'block';
+    document.getElementById('dynamicPrice').textContent = cfg.priceDisplay;
   }
 
   // Order summary product + base price line
   document.getElementById('summaryProduct').textContent = cfg.label;
-  if (selectedOption === 'combo' && couponApplied) {
+  if (selectedOption === 'combo' && offerActive) {
     document.getElementById('summaryBasePrice').innerHTML = `<span style="text-decoration:line-through; color:var(--gray-400); margin-right:6px;">1,780</span>1,480`;
   } else {
     document.getElementById('summaryBasePrice').textContent = formatTk(cfg.price);
@@ -1162,13 +1208,8 @@ function updateCountdown() {
     document.getElementById('cdMinutes').textContent  = '00';
     document.getElementById('cdSeconds').textContent   = '00';
     document.getElementById('countdownLabel').textContent = 'অফারটি শেষ হয়ে গেছে';
-    // Disable coupon button if offer has ended
-    const btn = document.getElementById('couponBtn');
-    if (btn && !couponApplied) {
-      btn.disabled = true;
-      btn.textContent = 'অফার শেষ হয়ে গেছে';
-      btn.classList.remove('coupon-btn-glow');
-    }
+    refreshPriceDisplay();
+    updateTotal();
     clearInterval(countdownInterval);
     return;
   }
@@ -1278,25 +1319,6 @@ document.getElementById('fieldPhone').addEventListener('input', function() {
   this.value = this.value.replace(/[^0-9]/g,'').slice(0,11);
 });
 
-function applyCoupon() {
-  if (couponApplied) return;
-  if (!isOfferActive()) {
-    const btn = document.getElementById('couponBtn');
-    btn.disabled = true;
-    btn.textContent = 'অফার শেষ হয়ে গেছে';
-    btn.classList.remove('coupon-btn-glow');
-    return;
-  }
-  couponApplied = true;
-  refreshPriceDisplay();
-  updateTotal();
-  const btn = document.getElementById('couponBtn');
-  btn.textContent = '✓ DEAL300 Applied — ৳300 Off!';
-  btn.classList.remove('coupon-btn-glow');
-  btn.classList.add('coupon-btn-applied');
-  btn.disabled = true;
-}
-
 function submitOrder() {
   let valid = true;
   const name    = document.getElementById('fieldName').value.trim();
@@ -1323,8 +1345,8 @@ function submitOrder() {
   btn.disabled = true; btn.textContent = 'Submitting...';
 
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzGmzzk4eOGWe_JBMotAdTLYROVzG1HUFFWZgNGRMeqs62fwQzRbIvZvUyS8wygmlRA/exec';
-  const orderLabel = (selectedOption === 'combo' && couponApplied)
-    ? cfg.label + ' [Coupon DEAL300 applied: Tk1780 → Tk1480]'
+  const orderLabel = (selectedOption === 'combo' && isOfferActive())
+    ? cfg.label + ' [World Cup Discount applied: Tk1780 → Tk1480]'
     : cfg.label;
   const payload = {
     name, phone,
@@ -1335,7 +1357,7 @@ function submitOrder() {
     total: 'Tk ' + total,
     timestamp: new Date().toLocaleString('en-BD', { timeZone:'Asia/Dhaka' })
   };
-  const params = new URLSearchParams({ name, phone, district: payload.district, delivery: delivery, total, order: selectedOption, coupon: (selectedOption === 'combo' && couponApplied) ? '1' : '0' });
+  const params = new URLSearchParams({ name, phone, district: payload.district, delivery: delivery, total, order: selectedOption, coupon: (selectedOption === 'combo' && isOfferActive()) ? '1' : '0' });
 
   fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) })
     .then(()  => window.location.href = 'thankyou.html?' + params.toString())
