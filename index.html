@@ -498,6 +498,13 @@ nav {
   padding: 4px 8px 14px;
   flex-wrap: nowrap;
 }
+.combo-value-stack.single-stack {
+  justify-content: flex-start;
+  padding-left: 16px;
+}
+.combo-value-stack.single-stack .stack-item {
+  flex: 0;
+}
 .stack-item {
   display: flex;
   flex-direction: column;
@@ -790,8 +797,8 @@ nav {
 
       <div class="price-row">
         <div class="price-card-old">
-          <div class="price-card-label">Normal Price</div>
-          <div class="price-card-amount strikethrough" id="dynamicPriceOld">৳১,৭৮০</div>
+          <div class="price-card-label" id="dynamicPriceOldLabel">Normal Price</div>
+          <div class="price-card-amount" id="dynamicPriceOld">৳১,৭৮০</div>
         </div>
         <div class="price-card-new" id="couponPriceCard">
           <div class="price-card-label-green">🏆 World Cup Discount</div>
@@ -849,32 +856,40 @@ nav {
       <div class="option-tabs">
 
         <!-- Option 1: Phantom Elixir single -->
-        <div class="option-tab" id="tab-phantom" onclick="selectOption('phantom')">
-          <div class="option-radio"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <img class="option-thumb" src="images/elixir.png" alt="Phantom Elixir">
-          <div class="option-text">
-            <div class="option-name">Phantom Elixir</div>
-            <div class="option-desc">30ml · Single bottle</div>
-            <div class="option-selected-label">✓ Selected</div>
+        <div class="option-tab combo-with-bar" id="tab-phantom" onclick="selectOption('phantom')">
+          <div class="combo-tab-toprow">
+            <div class="option-radio"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="option-text">
+              <div class="option-name">Phantom Elixir</div>
+              <div class="option-desc">30ml · Single bottle</div>
+              <div class="option-selected-label">✓ Selected</div>
+            </div>
+            <div class="option-price-col">
+              <div class="option-price">৳৮৯০</div>
+              <div class="option-price-sub">+ delivery</div>
+            </div>
           </div>
-          <div class="option-price-col">
-            <div class="option-price">৳৮৯০</div>
-            <div class="option-price-sub">+ delivery</div>
+          <div class="combo-value-stack single-stack">
+            <div class="stack-item"><img src="images/elixir.png" alt="Phantom Elixir"><span class="stack-label">Phantom Elixir</span></div>
           </div>
         </div>
 
         <!-- Option 2: Executive Bleu single -->
-        <div class="option-tab" id="tab-executive" onclick="selectOption('executive')">
-          <div class="option-radio"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <img class="option-thumb" src="images/executive-bleu.png" alt="Executive Bleu">
-          <div class="option-text">
-            <div class="option-name">Executive Bleu</div>
-            <div class="option-desc">30ml · Single bottle</div>
-            <div class="option-selected-label">✓ Selected</div>
+        <div class="option-tab combo-with-bar" id="tab-executive" onclick="selectOption('executive')">
+          <div class="combo-tab-toprow">
+            <div class="option-radio"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="option-text">
+              <div class="option-name">Executive Bleu</div>
+              <div class="option-desc">30ml · Single bottle</div>
+              <div class="option-selected-label">✓ Selected</div>
+            </div>
+            <div class="option-price-col">
+              <div class="option-price">৳৮৯০</div>
+              <div class="option-price-sub">+ delivery</div>
+            </div>
           </div>
-          <div class="option-price-col">
-            <div class="option-price">৳৮৯০</div>
-            <div class="option-price-sub">+ delivery</div>
+          <div class="combo-value-stack single-stack">
+            <div class="stack-item"><img src="images/executive-bleu.png" alt="Executive Bleu"><span class="stack-label">Executive Bleu</span></div>
           </div>
         </div>
 
@@ -955,7 +970,8 @@ nav {
       <div class="order-total-box">
         <div class="total-label">Order Summary</div>
         <div class="total-row main" id="summaryLine1"><span id="summaryProduct">Phantom Elixir + Executive Bleu (Combo)</span><span>Tk <span id="summaryBasePrice">1,780</span></span></div>
-        <div class="total-row free-row" id="summaryGiftsRow" style="display:flex"><span>🎁 Free Gift: Invictus 5ml + Lacoste Blanc 5ml</span><span>FREE</span></div>
+        <div class="total-row free-row" id="summaryGift1Row" style="display:flex"><span>🎁 FREE Gift #1: 5 ml Invictus</span><span>Tk 0</span></div>
+        <div class="total-row free-row" id="summaryGift2Row" style="display:flex"><span>🎁 FREE Gift #2: 5 ml Lacoste</span><span>Tk 0</span></div>
         <div class="total-row" id="summaryDeliveryRow"><span>Delivery</span><span id="deliveryAmt">—</span></div>
         <hr class="total-divider">
         <div class="total-final" id="totalFinal" style="display:none">
@@ -988,7 +1004,7 @@ nav {
         <div class="faq-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div>
           <div class="faq-q">এই offer এ কী পাবো?</div>
-          <div class="faq-a">Combo এর normal price ১,৭৮০ টাকা। কিন্তু এখন চলছে 🏆 World Cup Discount — তাই কোনো কুপন কোড ছাড়াই, automatically দাম কমে হয়ে যাচ্ছে মাত্র ১,৪৮০ টাকা (+ ডেলিভারি চার্জ)। এর সাথে আরো পাবেন ২টি FREE Gift — Invictus 5ml এবং Lacoste Blanc 5ml, সম্পূর্ণ বিনামূল্যে! 🎁</div>
+          <div class="faq-a">Combo এর normal price ১,৭৮০ টাকা। কিন্তু এখন চলছে 🏆 World Cup Discount — তাই দাম কমে হয়ে যাচ্ছে মাত্র ১,৪৮০ টাকা (+ ডেলিভারি চার্জ)। এর সাথে আরো পাবেন ২টি FREE Gift — Invictus 5ml এবং Lacoste Blanc 5ml, সম্পূর্ণ বিনামূল্যে! 🎁</div>
         </div>
       </div>
 
@@ -1122,23 +1138,27 @@ function refreshPriceDisplay() {
   const cfg = OPTION_CONFIG[selectedOption];
   const offerActive = isOfferActive();
 
-  // Headline price cards — only relevant for combo (dual price display)
+  // Headline price cards
   const oldCardEl = document.getElementById('dynamicPriceOld').closest('.price-card-old');
   const newCardEl = document.getElementById('couponPriceCard');
+  const oldPriceEl = document.getElementById('dynamicPriceOld');
+  const oldLabelEl = document.getElementById('dynamicPriceOldLabel');
 
   if (selectedOption === 'combo' && offerActive) {
+    // Combo with active World Cup Discount: show both cards
     oldCardEl.style.display = 'block';
     newCardEl.style.display = 'block';
-    document.getElementById('dynamicPriceOld').textContent = cfg.priceDisplay;
+    oldLabelEl.textContent = 'Normal Price';
+    oldPriceEl.classList.add('strikethrough');
+    oldPriceEl.textContent = cfg.priceDisplay;
     document.getElementById('dynamicPrice').textContent = cfg.discountedDisplay;
-  } else if (selectedOption === 'combo') {
-    oldCardEl.style.display = 'none';
-    newCardEl.style.display = 'block';
-    document.getElementById('dynamicPrice').textContent = cfg.priceDisplay;
   } else {
-    oldCardEl.style.display = 'none';
-    newCardEl.style.display = 'block';
-    document.getElementById('dynamicPrice').textContent = cfg.priceDisplay;
+    // Single bottle, or combo with expired offer: plain price only, no discount card
+    oldCardEl.style.display = 'block';
+    newCardEl.style.display = 'none';
+    oldLabelEl.textContent = 'Price';
+    oldPriceEl.classList.remove('strikethrough');
+    oldPriceEl.textContent = cfg.priceDisplay;
   }
 
   // Order summary product + base price line
@@ -1149,8 +1169,9 @@ function refreshPriceDisplay() {
     document.getElementById('summaryBasePrice').textContent = formatTk(cfg.price);
   }
 
-  // Free gifts row — only for combo
-  document.getElementById('summaryGiftsRow').style.display = (selectedOption === 'combo') ? 'flex' : 'none';
+  // Free gifts rows — only for combo
+  document.getElementById('summaryGift1Row').style.display = (selectedOption === 'combo') ? 'flex' : 'none';
+  document.getElementById('summaryGift2Row').style.display = (selectedOption === 'combo') ? 'flex' : 'none';
 }
 
 // ── IMAGE GRID ──
