@@ -39,34 +39,6 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"/></
   --serif: 'Cormorant Garamond', Georgia, serif;
   --sans: 'DM Sans', sans-serif;
   --nav-h: 56px;
-  --marquee-h: 36px;
-}
-
-/* ── MARQUEE BANNER ── */
-.marquee-banner {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 101;
-  height: var(--marquee-h);
-  background: var(--black);
-  color: var(--white);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-}
-.marquee-track {
-  display: inline-flex;
-  animation: marqueeScroll 16s linear infinite;
-}
-.marquee-track span {
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.3px;
-  padding: 0 32px;
-  flex-shrink: 0;
-}
-@keyframes marqueeScroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
 }
 html { scroll-behavior: smooth; }
 body {
@@ -80,7 +52,7 @@ body {
 
 /* ── NAV ── */
 nav {
-  position: fixed; top: var(--marquee-h); left: 0; right: 0; z-index: 100;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   background: var(--white); border-bottom: 1px solid var(--gray-200);
   height: var(--nav-h);
   display: flex; align-items: center; padding: 0 20px;
@@ -106,7 +78,7 @@ nav {
 }
 
 /* ── PAGE ── */
-.page-body { padding-top: calc(var(--nav-h) + var(--marquee-h)); }
+.page-body { padding-top: var(--nav-h); }
 
 /* ── LAYOUT ── */
 .product-layout {
@@ -128,8 +100,8 @@ nav {
   .left-col {
     width: 50%;
     position: sticky;
-    top: calc(var(--nav-h) + var(--marquee-h));
-    height: calc(100vh - var(--nav-h) - var(--marquee-h));
+    top: var(--nav-h);
+    height: calc(100vh - var(--nav-h));
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: none;
@@ -218,39 +190,8 @@ nav {
 .divider-line { border: none; border-top: 1px solid var(--gray-200); margin: 0 0 18px; }
 
 /* ── DYNAMIC PRICE ── */
-.price-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
-.price-card-old {
-  background: var(--gray-100);
-  border: 1px solid var(--gray-200);
-  border-radius: 10px;
-  padding: 8px 16px;
-  text-align: center;
-  line-height: 1.3;
-}
-.price-card-label {
-  font-size: 10px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
-  color: var(--gray-600);
-}
-.price-card-amount {
-  font-family: var(--serif); font-size: 26px; font-weight: 400; color: var(--gray-500, #999);
-}
-.price-card-amount.strikethrough { text-decoration: line-through; }
-
-.price-card-new {
-  background: #1a7a40;
-  color: #fff;
-  border-radius: 10px;
-  padding: 8px 18px;
-  text-align: center;
-  line-height: 1.3;
-}
-.price-card-label-green {
-  font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
-  opacity: 0.95;
-}
-.price-card-amount-green {
-  font-family: var(--serif); font-size: 32px; font-weight: 700; color: #fff;
-}
+.price-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.price-new { font-family: var(--serif); font-size: 40px; font-weight: 400; color: var(--black); line-height: 1; }
 .free-delivery-tag {
   font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
   background: #e8f5e9; color: #1a7a40; border: 1px solid #b6e2c8;
@@ -273,114 +214,6 @@ nav {
   border: 1px solid var(--gray-200); border-radius: 20px; padding: 5px 14px;
 }
 
-/* ── FREE GIFTS SECTION ── */
-.free-gifts-section {
-  border-bottom: 1px solid var(--gray-200);
-}
-.free-gifts-banner {
-  background: #c0392b;
-  color: #fff;
-  font-size: 15px;
-  font-weight: 600;
-  text-align: center;
-  padding: 12px 16px;
-}
-.free-gifts-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  padding: 18px 20px;
-}
-@media (min-width: 900px) { .free-gifts-grid { padding: 20px 40px; } }
-
-.discount-applied-card {
-  grid-column: 1 / -1;
-  background: #eafaf0;
-  border: 1.5px solid #1a7a40;
-  border-radius: 10px;
-  padding: 12px 16px;
-  text-align: center;
-  position: relative;
-}
-.discount-applied-badge {
-  position: absolute;
-  top: -10px; right: 14px;
-  background: #1a7a40;
-  color: #fff;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  padding: 3px 10px;
-  border-radius: 20px;
-}
-.discount-applied-text {
-  font-size: 13px;
-  font-weight: 600;
-  color: #1a7a40;
-  margin-bottom: 4px;
-}
-.discount-applied-amount {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--black);
-}
-.discount-old {
-  text-decoration: line-through;
-  color: var(--gray-400);
-  font-weight: 400;
-}
-.discount-new {
-  color: #1a7a40;
-  font-weight: 700;
-}
-.gift-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-.gift-img-wrap {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 10px;
-  overflow: hidden;
-  background: var(--gray-100);
-  border: 1px solid var(--gray-200);
-  margin-bottom: 8px;
-}
-.gift-img-wrap img {
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-}
-.gift-price-tag {
-  position: absolute;
-  top: 10px; left: 50%;
-  transform: translateX(-50%);
-  background: #e8722c;
-  color: #fff;
-  font-size: 13px;
-  font-weight: 700;
-  padding: 5px 14px;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  white-space: nowrap;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
-.gift-price-old {
-  text-decoration: line-through;
-  font-weight: 500;
-  opacity: 0.85;
-}
-.gift-name {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--black);
-  line-height: 1.4;
-}
-
 /* ── OPTION TABS ── */
 .option-tabs-section {
   padding: 20px 20px 24px;
@@ -391,53 +224,6 @@ nav {
 .option-tabs-label {
   font-size: 22px; font-weight: 600;
   color: var(--black); margin-bottom: 12px;
-}
-
-.countdown-box {
-  background: var(--black);
-  border-radius: 10px;
-  padding: 12px 16px;
-  margin-bottom: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  text-align: center;
-}
-.countdown-label {
-  font-size: 12.5px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.85);
-}
-.countdown-units {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.countdown-unit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 32px;
-}
-.countdown-num {
-  font-family: var(--serif);
-  font-size: 22px;
-  font-weight: 500;
-  color: #fff;
-  line-height: 1;
-}
-.countdown-unit-label {
-  font-size: 9px;
-  color: rgba(255,255,255,0.55);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-top: 2px;
-}
-.countdown-sep {
-  font-size: 18px;
-  color: rgba(255,255,255,0.35);
-  padding-bottom: 12px;
 }
 
 .option-tabs {
@@ -465,80 +251,6 @@ nav {
   box-shadow: 0 2px 12px rgba(0,0,0,0.10);
 }
 
-/* Combo tab with embedded coupon bar — switches to column layout */
-.option-tab.combo-with-bar {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 0;
-  padding: 14px 16px 0;
-}
-.combo-tab-toprow {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding-bottom: 14px;
-}
-.combo-coupon-bar {
-  background: #1a7a40;
-  color: #fff;
-  font-size: 12.5px;
-  line-height: 1.5;
-  padding: 9px 14px;
-  margin: 0 -16px;
-  text-align: center;
-  border-radius: 0 0 8px 8px;
-}
-
-.combo-value-stack {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 4px 8px 14px;
-  flex-wrap: nowrap;
-}
-.combo-value-stack.single-stack {
-  justify-content: flex-start;
-  padding-left: 16px;
-}
-.combo-value-stack.single-stack .stack-item {
-  flex: 0 0 auto;
-  width: 56px;
-}
-.stack-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-  min-width: 0;
-}
-.stack-item img {
-  width: 100%;
-  max-width: 56px;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 1px solid var(--gray-200);
-  background: var(--gray-100);
-}
-.stack-label {
-  font-size: 9.5px;
-  color: var(--gray-600);
-  margin-top: 4px;
-  text-align: center;
-  line-height: 1.2;
-}
-.stack-plus {
-  font-size: 16px;
-  color: var(--gray-400);
-  font-weight: 300;
-  flex-shrink: 0;
-}
-.option-tab.combo-with-bar.selected {
-  background: var(--gray-100);
-}
-
 /* Radio dot */
 .option-radio {
   width: 22px; height: 22px; border-radius: 50%;
@@ -554,15 +266,6 @@ nav {
 .option-radio svg { display: none; }
 .option-tab.selected .option-radio svg { display: block; }
 .option-radio::after { display: none; }
-
-.option-thumb {
-  width: 38px; height: 38px;
-  border-radius: 8px;
-  object-fit: cover;
-  flex-shrink: 0;
-  border: 1px solid var(--gray-200);
-  background: var(--gray-100);
-}
 
 .option-text { flex: 1; }
 .option-name { font-size: 15px; font-weight: 500; color: var(--black); line-height: 1.3; }
@@ -737,7 +440,6 @@ nav {
 }
 .confirm-btn:hover { opacity: 0.8; }
 .confirm-btn:disabled { opacity: 0.35; cursor: not-allowed; }
-
 .form-note { font-size: 13px; color: var(--gray-400); text-align: center; margin-top: 12px; line-height: 1.7; }
 
 .toast {
@@ -752,13 +454,6 @@ nav {
 </style>
 </head>
 <body>
-
-<div class="marquee-banner">
-  <div class="marquee-track">
-    <span>🏆 World Cup Special! Combo Price ৳1,780 থেকে কমে এখন মাত্র ৳1,480 — সাথে ২টি FREE Gift!</span>
-    <span>🏆 World Cup Special! Combo Price ৳1,780 থেকে কমে এখন মাত্র ৳1,480 — সাথে ২টি FREE Gift!</span>
-  </div>
-</div>
 
 <nav>
   <div class="nav-inner">
@@ -775,10 +470,13 @@ nav {
 
   <!-- ── LEFT COL ── -->
   <div class="left-col">
-    <div class="desktop-image-grid" id="desktopImageGrid"></div>
-    <div style="border-bottom: 1px solid var(--gray-200); padding: 4px 0;">
-      <div class="mobile-image-grid" id="mobileImageGrid"></div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/SyRF_dU_gR0?loop=1&playlist=SyRF_dU_gR0&controls=1&rel=0&modestbranding=1&showinfo=0"
+        title="Celures Phantom Elixir + Executive Bleu"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
     </div>
+    <div class="desktop-image-grid" id="desktopImageGrid"></div>
   </div>
 
   <!-- ── RIGHT COL ── -->
@@ -790,136 +488,71 @@ nav {
         <span class="badge badge-sale">Limited Offer 🔥</span>
       </div>
 
-      <h1 class="product-title">Phantom Elixir <span class="ml-label">(30ml)</span><span class="plus-sign"> + </span>Executive Bleu <span class="ml-label">(30ml)</span><span class="plus-sign"> + </span><span style="font-size: 0.6em; font-weight: 500; color: #1a7a40;">2টা perfume free gift</span></h1>
+      <h1 class="product-title">Phantom Elixir <span class="ml-label">(30ml)</span><span class="plus-sign"> + </span>Executive Bleu <span class="ml-label">(30ml)</span></h1>
 
       <div style="font-size: 13px; color: var(--gray-600); margin-bottom: 16px; font-style: italic;">Inspired by Dior Sauvage Elixir & Bleu de Chanel</div>
 
       <hr class="divider-line">
 
       <div class="price-row">
-        <div class="price-card-old">
-          <div class="price-card-label" id="dynamicPriceOldLabel">Normal Price</div>
-          <div class="price-card-amount" id="dynamicPriceOld">৳১,৭৮০</div>
-        </div>
-        <div class="price-card-new" id="couponPriceCard">
-          <div class="price-card-label-green">🏆 World Cup Discount</div>
-          <div class="price-card-amount-green" id="dynamicPrice">৳১,৪৮০</div>
-        </div>
+        <div class="price-new" id="dynamicPrice">৳১,৩৯০</div>
+        <div class="free-delivery-tag" id="freeDeliveryTag">✦ Free Delivery</div>
       </div>
 
       <div class="cod-badge">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
         Cash on Delivery — পণ্য পেয়ে টাকা দিন
       </div>
-    </div>
-
-    <!-- FREE GIFTS SECTION -->
-    <div class="free-gifts-section">
-      <div class="free-gifts-banner">Combo কিনলে এই FREE Gift গুলো পাবেন 🎁</div>
-      <div class="free-gifts-grid">
-        <div class="gift-card">
-          <div class="gift-img-wrap">
-            <img src="images/gift1.png" alt="Invictus 5ml">
-            <div class="gift-price-tag"><span class="gift-price-old">৳150</span> FREE</div>
-          </div>
-          <div class="gift-name">5 ml Paco Rabanne Invictus <span style="color: var(--gray-600); font-weight: 400;">(Inspired Version)</span></div>
-        </div>
-        <div class="gift-card">
-          <div class="gift-img-wrap">
-            <img src="images/gift2.png" alt="Lacoste Blanc 5ml">
-            <div class="gift-price-tag"><span class="gift-price-old">৳150</span> FREE</div>
-          </div>
-          <div class="gift-name">5 ml Lacoste Blanc <span style="color: var(--gray-600); font-weight: 400;">(Inspired Version)</span></div>
-        </div>
-        <div class="discount-applied-card">
-          <div class="discount-applied-badge">✓ Applied</div>
-          <div class="discount-applied-text">🏆 World Cup Discount</div>
-          <div class="discount-applied-amount"><span class="discount-old">৳১,৭৮০</span> → <span class="discount-new">৳১,৪৮০</span></div>
-        </div>
+      <div class="delivery-row" id="deliveryPills">
+        <div class="delivery-pill">🚚 ডেলিভারি চার্জ — ঢাকার ভেতরে ৳৮০, বাইরে ৳১১০</div>
       </div>
     </div>
 
     <!-- ── OPTION TABS ── -->
     <div class="option-tabs-section">
-      <div class="countdown-box" id="countdownBox">
-        <div class="countdown-label" id="countdownLabel">এই অফারটি ২০ জুলাই রাত ১:০০ পর্যন্ত চলবে</div>
-        <div class="countdown-units">
-          <div class="countdown-unit"><div class="countdown-num" id="cdDays">--</div><div class="countdown-unit-label">দিন</div></div>
-          <div class="countdown-sep">:</div>
-          <div class="countdown-unit"><div class="countdown-num" id="cdHours">--</div><div class="countdown-unit-label">ঘণ্টা</div></div>
-          <div class="countdown-sep">:</div>
-          <div class="countdown-unit"><div class="countdown-num" id="cdMinutes">--</div><div class="countdown-unit-label">মিনিট</div></div>
-          <div class="countdown-sep">:</div>
-          <div class="countdown-unit"><div class="countdown-num" id="cdSeconds">--</div><div class="countdown-unit-label">সেকেন্ড</div></div>
-        </div>
-      </div>
       <div class="option-tabs-label">আপনার অর্ডার বেছে নিন</div>
       <div class="option-tabs">
 
         <!-- Option 1: Phantom Elixir single -->
-        <div class="option-tab combo-with-bar" id="tab-phantom" onclick="selectOption('phantom')">
-          <div class="combo-tab-toprow">
-            <div class="option-radio"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div class="option-text">
-              <div class="option-name">Phantom Elixir</div>
-              <div class="option-desc">30ml · Single bottle</div>
-              <div class="option-selected-label">✓ Selected</div>
-            </div>
-            <div class="option-price-col">
-              <div class="option-price">৳৮৯০</div>
-              <div class="option-price-sub">+ delivery</div>
-            </div>
+        <div class="option-tab" id="tab-phantom" onclick="selectOption('phantom')">
+          <div class="option-radio"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="option-text">
+            <div class="option-name">Phantom Elixir</div>
+            <div class="option-desc">30ml · Single bottle</div>
+            <div class="option-selected-label">✓ Selected</div>
           </div>
-          <div class="combo-value-stack single-stack">
-            <div class="stack-item"><img src="images/elixir.png" alt="Phantom Elixir"><span class="stack-label">Phantom Elixir</span></div>
+          <div class="option-price-col">
+            <div class="option-price">৳৭৯০</div>
+            <div class="option-price-sub">+ delivery</div>
           </div>
         </div>
 
         <!-- Option 2: Executive Bleu single -->
-        <div class="option-tab combo-with-bar" id="tab-executive" onclick="selectOption('executive')">
-          <div class="combo-tab-toprow">
-            <div class="option-radio"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div class="option-text">
-              <div class="option-name">Executive Bleu</div>
-              <div class="option-desc">30ml · Single bottle</div>
-              <div class="option-selected-label">✓ Selected</div>
-            </div>
-            <div class="option-price-col">
-              <div class="option-price">৳৮৯০</div>
-              <div class="option-price-sub">+ delivery</div>
-            </div>
+        <div class="option-tab" id="tab-executive" onclick="selectOption('executive')">
+          <div class="option-radio"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="option-text">
+            <div class="option-name">Executive Bleu</div>
+            <div class="option-desc">30ml · Single bottle</div>
+            <div class="option-selected-label">✓ Selected</div>
           </div>
-          <div class="combo-value-stack single-stack">
-            <div class="stack-item"><img src="images/executive-bleu.png" alt="Executive Bleu"><span class="stack-label">Executive Bleu</span></div>
+          <div class="option-price-col">
+            <div class="option-price">৳৭৯০</div>
+            <div class="option-price-sub">+ delivery</div>
           </div>
         </div>
 
         <!-- Option 3: Combo -->
-        <div class="option-tab combo-with-bar selected" id="tab-combo" onclick="selectOption('combo')">
+        <div class="option-tab selected" id="tab-combo" onclick="selectOption('combo')">
           <div class="option-best-tag">🔥 Best Value</div>
-          <div class="combo-tab-toprow">
-            <div class="option-radio"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div class="option-text">
-              <div class="option-name">Phantom Elixir + Executive Bleu</div>
-              <div class="option-desc">30ml each · Both bottles · 890×2 = ৳1,780</div>
-              <div class="option-selected-label">✓ Selected</div>
-            </div>
-            <div class="option-price-col">
-              <div class="option-price"><span style="text-decoration:line-through; color:rgba(0,0,0,0.4); font-size:0.65em; margin-right:6px;">৳১,৭৮০</span>৳১,৪৮০</div>
-              <div class="option-price-sub">+ delivery</div>
-            </div>
+          <div class="option-radio"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="option-text">
+            <div class="option-name">Phantom Elixir + Executive Bleu</div>
+            <div class="option-desc">30ml each · Both bottles</div>
+            <div class="option-selected-label">✓ Selected</div>
           </div>
-          <div class="combo-value-stack">
-            <div class="stack-item"><img src="images/elixir.png" alt="Phantom Elixir"><span class="stack-label">Phantom Elixir</span></div>
-            <span class="stack-plus">+</span>
-            <div class="stack-item"><img src="images/executive-bleu.png" alt="Executive Bleu"><span class="stack-label">Executive Bleu</span></div>
-            <span class="stack-plus">+</span>
-            <div class="stack-item"><img src="images/gift1.png" alt="Invictus Gift"><span class="stack-label">Invictus Gift</span></div>
-            <span class="stack-plus">+</span>
-            <div class="stack-item"><img src="images/gift2.png" alt="Lacoste Blanc Gift"><span class="stack-label">Lacoste Gift</span></div>
-          </div>
-          <div class="combo-coupon-bar">
-            🏆 World Cup Discount — Combo Price মাত্র <strong>৳১,৪৮০</strong> (normal ৳১,৭৮০)
+          <div class="option-price-col">
+            <div class="option-price">৳১,৩৯০</div>
+            <div class="option-price-sub">Free delivery 🎁</div>
           </div>
         </div>
 
@@ -932,6 +565,31 @@ nav {
         style="width:100%; height:52px; background:var(--black); color:var(--white); border:none; border-radius:8px; font-family:var(--sans); font-size:16px; font-weight:500; cursor:pointer; transition:opacity 0.2s;">
         এখনই অর্ডার করতে চাই →
       </button>
+    </div>
+    <div style="border-bottom: 1px solid var(--gray-200); padding: 4px 0;">
+      <div class="mobile-image-grid" id="mobileImageGrid"></div>
+    </div>
+
+    <!-- PERFUME DESCRIPTIONS -->
+    <div style="padding: 20px 20px 24px; border-bottom: 1px solid var(--gray-200);">
+      <div style="margin-bottom: 16px;">
+        <div style="font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 3px;">Phantom Elixir <span style="font-weight: 400; color: var(--gray-600);">— Inspired by Dior Sauvage Elixir</span></div>
+        <div style="font-size: 13px; color: var(--gray-600); line-height: 1.7;">এটা masculine একটা scent। Fresh, spicy আর woody — তিনটা মিলিয়ে একটা scent যেটা পরলে room এ enter করার সাথে সাথেই আশেপাশের সবাই আপনাকে notice করবে।</div>
+        <div style="font-size: 12px; color: var(--gray-400); margin-top: 5px;">⏱ Longevity: 8+ hours</div>
+      </div>
+      <div>
+        <div style="font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 3px;">Executive Bleu <span style="font-weight: 400; color: var(--gray-600);">— Inspired by Bleu de Chanel</span></div>
+        <div style="font-size: 13px; color: var(--gray-600); line-height: 1.7;">Clean, fresh, এবং effortlessly classy। Office থেকে dinner, সব জায়গায় এটা মানিয়ে যায়। যারা everyday wear হিসেবে এমন কিছু চান যেটা always appropriate এবং always impressive — then this is the best choice.</div>
+        <div style="font-size: 12px; color: var(--gray-400); margin-top: 5px;">⏱ Longevity: 4–5 hours</div>
+      </div>
+    </div>
+
+    <!-- RETURN POLICY -->
+    <div style="padding: 16px 20px; background: #c0392b; border-bottom: 1px solid #a93226;">
+      <div style="font-size: 13px; color: rgba(255,255,255,0.9); line-height: 1.85;">
+        <span style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; display: block; margin-bottom: 7px;">◼️ Return Policy</span>
+        ডেলিভারিম্যান থাকা অবস্থায় প্রোডাক্ট খুলে চেক করে নিতে পারবেন। আমরা সারা দেশে ক্যাশ অন হোম ডেলিভারি দিয়ে থাকি। সঠিক প্রোডাক্ট পাওয়ার পরে পছন্দ না হলে সেক্ষেত্রে ডেলিভারি চার্জ দিয়ে রিটার্ন করতে পারবেন। ডেলিভারিম্যান চলে যাওয়ার পর কোনো অভিযোগ গ্রহনযোগ্য হবেনা। কম্বোর প্রাইস সিংগেল প্রাইসের তুলনায় অনেকটাই ডিস্কাউন্টেড থাকে তাই একটা রেখে আরেকটা ফেরত দেয়ার অপশন নেই।
+      </div>
     </div>
 
     <!-- ORDER FORM -->
@@ -970,10 +628,9 @@ nav {
 
       <div class="order-total-box">
         <div class="total-label">Order Summary</div>
-        <div class="total-row main" id="summaryLine1"><span id="summaryProduct">Phantom Elixir + Executive Bleu (Combo)</span><span>Tk <span id="summaryBasePrice">1,780</span></span></div>
-        <div class="total-row free-row" id="summaryGift1Row" style="display:flex"><span>🎁 FREE Gift #1: 5 ml Invictus</span><span>Tk 0</span></div>
-        <div class="total-row free-row" id="summaryGift2Row" style="display:flex"><span>🎁 FREE Gift #2: 5 ml Lacoste</span><span>Tk 0</span></div>
-        <div class="total-row" id="summaryDeliveryRow"><span>Delivery</span><span id="deliveryAmt">—</span></div>
+        <div class="total-row main" id="summaryLine1"><span id="summaryProduct">Phantom Elixir + Executive Bleu (Combo)</span><span>Tk <span id="summaryBasePrice">1,390</span></span></div>
+        <div class="total-row free-row" id="summaryFreeRow" style="display:flex"><span>Delivery</span><span>FREE 🎁</span></div>
+        <div class="total-row" id="summaryDeliveryRow" style="display:none"><span>Delivery</span><span id="deliveryAmt">—</span></div>
         <hr class="total-divider">
         <div class="total-final" id="totalFinal" style="display:none">
           <span>Total (Cash on Delivery)</span>
@@ -989,14 +646,6 @@ nav {
       </div>
     </div>
 
-    <!-- RETURN POLICY -->
-    <div style="padding: 16px 20px; background: #c0392b; border-bottom: 1px solid #a93226;">
-      <div style="font-size: 13px; color: rgba(255,255,255,0.9); line-height: 1.85;">
-        <span style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; display: block; margin-bottom: 7px;">◼️ Return Policy</span>
-        ডেলিভারিম্যান থাকা অবস্থায় প্রোডাক্ট খুলে চেক করে নিতে পারবেন। আমরা সারা দেশে ক্যাশ অন হোম ডেলিভারি দিয়ে থাকি। সঠিক প্রোডাক্ট পাওয়ার পরে পছন্দ না হলে সেক্ষেত্রে ডেলিভারি চার্জ দিয়ে রিটার্ন করতে পারবেন। ডেলিভারিম্যান চলে যাওয়ার পর কোনো অভিযোগ গ্রহনযোগ্য হবেনা। কম্বোর প্রাইস সিংগেল প্রাইসের তুলনায় অনেকটাই ডিস্কাউন্টেড থাকে তাই একটা রেখে আরেকটা ফেরত দেয়ার অপশন নেই।
-      </div>
-    </div>
-
     <!-- FAQ -->
     <div class="section" style="border-bottom:none; padding-bottom:60px;">
       <div class="section-title">Frequently Asked Questions</div>
@@ -1005,23 +654,7 @@ nav {
         <div class="faq-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div>
           <div class="faq-q">এই offer এ কী পাবো?</div>
-          <div class="faq-a">Combo এর normal price ১,৭৮০ টাকা। কিন্তু এখন চলছে 🏆 World Cup Discount — তাই দাম কমে হয়ে যাচ্ছে মাত্র ১,৪৮০ টাকা (+ ডেলিভারি চার্জ)। এর সাথে আরো পাবেন ২টি FREE Gift — Invictus 5ml এবং Lacoste Blanc 5ml, সম্পূর্ণ বিনামূল্যে! 🎁</div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div>
-          <div class="faq-q">Phantom Elixir আর Executive Bleu এর smell কেমন?</div>
-          <div class="faq-a">
-            <strong>Phantom Elixir</strong> — Inspired by Dior Sauvage Elixir<br>
-            এটা masculine একটা scent। Fresh, spicy আর woody — তিনটা মিলিয়ে একটা scent যেটা পরলে room এ enter করার সাথে সাথেই আশেপাশের সবাই আপনাকে notice করবে।<br>
-            ⏱ Longevity: 8+ hours
-            <br><br>
-            <strong>Executive Bleu</strong> — Inspired by Bleu de Chanel<br>
-            Clean, fresh, এবং effortlessly classy। Office থেকে dinner, সব জায়গায় এটা মানিয়ে যায়। যারা everyday wear হিসেবে এমন কিছু চান যেটা always appropriate এবং always impressive — then this is the best choice.<br>
-            ⏱ Longevity: 4–5 hours
-          </div>
+          <div class="faq-a">Combo নিলে Phantom Elixir (30ml) + Executive Bleu (30ml) — দুটো premium perfume, মাত্র ১,৩৯০ টাকায় এবং ডেলিভারি সম্পূর্ণ বিনামূল্যে।</div>
         </div>
       </div>
 
@@ -1029,7 +662,7 @@ nav {
         <div class="faq-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div>
           <div class="faq-q">এগুলো কি original নাকি inspired?</div>
-          <div class="faq-a">এগুলো inspired version — বিশ্বখ্যাত luxury brands এর inspiration এ তৈরি। Same scent, same feel — তবে অনেক সাশ্রয়ী দামে।<br><br>আমরা শুধুমাত্র বিশ্বের সেরা fragrance company — <strong>LUZI</strong> — এর perfume oil ব্যবহার করি। এই কোম্পানি Chanel, Dior, Armani সহ বিশ্বের বড় বড় brands এর perfume তৈরিতেও raw material সরবরাহ করে।<br><br>Combo এর সাথে যে FREE Gift দুটো পাবেন, সেগুলোও inspired version — একটি Paco Rabanne Invictus এবং অন্যটি Lacoste Blanc এর inspiration এ তৈরি।</div>
+          <div class="faq-a">এগুলো inspired version — বিশ্বখ্যাত luxury brands এর inspiration এ তৈরি। Same scent, same feel — তবে অনেক সাশ্রয়ী দামে।<br><br>আমরা শুধুমাত্র বিশ্বের সেরা fragrance company — <strong>LUZI</strong> — এর perfume oil ব্যবহার করি। এই কোম্পানি Chanel, Dior, Armani সহ বিশ্বের বড় বড় brands এর perfume তৈরিতেও raw material সরবরাহ করে।</div>
         </div>
       </div>
 
@@ -1061,7 +694,7 @@ nav {
         <div class="faq-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div>
           <div class="faq-q">Delivery charge ও সময়?</div>
-          <div class="faq-a">ঢাকার ভেতরে ৭০ টাকা, বাইরে ১১০ টাকা — Single bottle হোক বা Combo, সব order এ একই delivery charge প্রযোজ্য। Order confirm হওয়ার পর ৪৮–৭২ ঘন্টায় পৌঁছে যাবে।</div>
+          <div class="faq-a">Combo তে ডেলিভারি সম্পূর্ণ বিনামূল্যে। Single bottle এ ঢাকার ভেতরে ৮০ টাকা, বাইরে ১১০ টাকা। Order confirm হওয়ার পর ৪৮–৭২ ঘন্টায় পৌঁছে যাবে।</div>
         </div>
       </div>
 
@@ -1097,30 +730,12 @@ nav {
 // ── OPTION SELECTION STATE ──
 // Default: combo selected
 let selectedOption = 'combo'; // 'phantom' | 'executive' | 'combo'
-let selectedDistrict = "";
 
 const OPTION_CONFIG = {
-  phantom:   { price: 890,  priceDisplay: '৳৮৯০',  label: 'Phantom Elixir (30ml)' },
-  executive: { price: 890,  priceDisplay: '৳৮৯০',  label: 'Executive Bleu (30ml)' },
-  combo:     { price: 1780, discountedPrice: 1480, priceDisplay: '৳১,৭৮০', discountedDisplay: '৳১,৪৮০', label: 'Phantom Elixir + Executive Bleu (Combo)' }
+  phantom:   { price: 790,  priceDisplay: '৳৭৯০',  label: 'Phantom Elixir (30ml)',               freeDelivery: false },
+  executive: { price: 790,  priceDisplay: '৳৭৯০',  label: 'Executive Bleu (30ml)',               freeDelivery: false },
+  combo:     { price: 1390, priceDisplay: '৳১,৩৯০', label: 'Phantom Elixir + Executive Bleu (Combo)', freeDelivery: true  }
 };
-
-function getCurrentPrice() {
-  const cfg = OPTION_CONFIG[selectedOption];
-  if (selectedOption === 'combo' && isOfferActive()) {
-    return cfg.discountedPrice;
-  }
-  return cfg.price;
-}
-
-function formatTk(num) {
-  return num.toLocaleString('en-IN'); // gives comma formatting like 1,480
-}
-
-function bnDigits(str) {
-  const map = {'0':'০','1':'১','2':'২','3':'৩','4':'৪','5':'৫','6':'৬','7':'৭','8':'৮','9':'৯',',':','};
-  return str.toString().split('').map(ch => map[ch] !== undefined ? map[ch] : ch).join('');
-}
 
 function selectOption(key) {
   selectedOption = key;
@@ -1131,48 +746,33 @@ function selectOption(key) {
     tab.classList.toggle('selected', k === key);
   });
 
-  refreshPriceDisplay();
-  updateTotal();
-}
+  const cfg = OPTION_CONFIG[key];
 
-function refreshPriceDisplay() {
-  const cfg = OPTION_CONFIG[selectedOption];
-  const offerActive = isOfferActive();
+  // Update headline price
+  document.getElementById('dynamicPrice').textContent = cfg.priceDisplay;
 
-  // Headline price cards
-  const oldCardEl = document.getElementById('dynamicPriceOld').closest('.price-card-old');
-  const newCardEl = document.getElementById('couponPriceCard');
-  const oldPriceEl = document.getElementById('dynamicPriceOld');
-  const oldLabelEl = document.getElementById('dynamicPriceOldLabel');
+  // Free delivery tag
+  const fdt = document.getElementById('freeDeliveryTag');
+  if (cfg.freeDelivery) { fdt.classList.add('visible'); } else { fdt.classList.remove('visible'); }
 
-  if (selectedOption === 'combo' && offerActive) {
-    // Combo with active World Cup Discount: show both cards
-    oldCardEl.style.display = 'block';
-    newCardEl.style.display = 'block';
-    oldLabelEl.textContent = 'Normal Price';
-    oldPriceEl.classList.add('strikethrough');
-    oldPriceEl.textContent = cfg.priceDisplay;
-    document.getElementById('dynamicPrice').textContent = cfg.discountedDisplay;
-  } else {
-    // Single bottle, or combo with expired offer: plain price only, no discount card
-    oldCardEl.style.display = 'block';
-    newCardEl.style.display = 'none';
-    oldLabelEl.textContent = 'Price';
-    oldPriceEl.classList.remove('strikethrough');
-    oldPriceEl.textContent = cfg.priceDisplay;
-  }
+  // Delivery pills — hide when combo (free delivery), show when single
+  document.getElementById('deliveryPills').style.display = cfg.freeDelivery ? 'none' : 'flex';
 
-  // Order summary product + base price line
+  // Update order summary
   document.getElementById('summaryProduct').textContent = cfg.label;
-  if (selectedOption === 'combo' && offerActive) {
-    document.getElementById('summaryBasePrice').innerHTML = `<span style="text-decoration:line-through; color:var(--gray-400); margin-right:6px;">1,780</span>1,480`;
-  } else {
-    document.getElementById('summaryBasePrice').textContent = formatTk(cfg.price);
-  }
+  document.getElementById('summaryBasePrice').textContent = cfg.price === 1390 ? '1,390' : '790';
 
-  // Free gifts rows — only for combo
-  document.getElementById('summaryGift1Row').style.display = (selectedOption === 'combo') ? 'flex' : 'none';
-  document.getElementById('summaryGift2Row').style.display = (selectedOption === 'combo') ? 'flex' : 'none';
+  if (cfg.freeDelivery) {
+    document.getElementById('summaryFreeRow').style.display = 'flex';
+    document.getElementById('summaryDeliveryRow').style.display = 'none';
+    document.getElementById('totalFinal').style.display = 'flex';
+    document.getElementById('totalPending').style.display = 'none';
+    document.getElementById('totalAmt').textContent = 'Tk 1,390';
+  } else {
+    document.getElementById('summaryFreeRow').style.display = 'none';
+    document.getElementById('summaryDeliveryRow').style.display = '';
+    updateTotal();
+  }
 }
 
 // ── IMAGE GRID ──
@@ -1210,46 +810,6 @@ function initImageGrids() {
 }
 
 initImageGrids();
-
-// ── COUNTDOWN TIMER ──
-// One-time deadline: 20 July 2026, 1:00 AM Dhaka time (= 19 July 2026, 19:00:00 UTC).
-// After this passes, the offer/coupon is no longer valid — no repeat.
-const OFFER_DEADLINE_UTC = new Date(Date.UTC(2026, 6, 19, 19, 0, 0)); // month is 0-indexed: 6 = July
-
-function isOfferActive() {
-  return new Date().getTime() < OFFER_DEADLINE_UTC.getTime();
-}
-
-function updateCountdown() {
-  const now = new Date();
-  let diff = OFFER_DEADLINE_UTC.getTime() - now.getTime();
-
-  if (diff <= 0) {
-    document.getElementById('cdDays').textContent    = '0';
-    document.getElementById('cdHours').textContent    = '00';
-    document.getElementById('cdMinutes').textContent  = '00';
-    document.getElementById('cdSeconds').textContent   = '00';
-    document.getElementById('countdownLabel').textContent = 'অফারটি শেষ হয়ে গেছে';
-    refreshPriceDisplay();
-    updateTotal();
-    clearInterval(countdownInterval);
-    return;
-  }
-
-  const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours   = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
-
-  const pad = n => n.toString().padStart(2, '0');
-  document.getElementById('cdDays').textContent    = days;
-  document.getElementById('cdHours').textContent    = pad(hours);
-  document.getElementById('cdMinutes').textContent  = pad(minutes);
-  document.getElementById('cdSeconds').textContent   = pad(seconds);
-}
-
-updateCountdown();
-const countdownInterval = setInterval(updateCountdown, 1000);
 
 // Init combo as selected on load
 selectOption('combo');
@@ -1290,6 +850,7 @@ document.addEventListener('keydown', e => {
 
 // ── DISTRICTS ──
 const DISTRICTS = ["Bagerhat","Bandarban","Barguna","Barishal","Bhola","Bogura","Brahmanbaria","Chandpur","Chattogram","Chuadanga","Cox's Bazar","Cumilla","Dhaka","Dinajpur","Faridpur","Feni","Gaibandha","Gazipur","Gopalganj","Habiganj","Jamalpur","Jashore","Jhalokati","Jhenaidah","Joypurhat","Khagrachhari","Khulna","Kishoreganj","Kurigram","Kushtia","Lakshmipur","Lalmonirhat","Madaripur","Magura","Manikganj","Meherpur","Moulvibazar","Munshiganj","Mymensingh","Naogaon","Narail","Narayanganj","Narsingdi","Natore","Netrokona","Nilphamari","Noakhali","Pabna","Panchagarh","Patuakhali","Pirojpur","Rajbari","Rajshahi","Rangamati","Rangpur","Satkhira","Shariatpur","Sherpur","Sirajganj","Sunamganj","Sylhet","Tangail","Thakurgaon"];
+let selectedDistrict = "";
 
 const districtInput    = document.getElementById('districtInput');
 const districtDropdown = document.getElementById('districtDropdown');
@@ -1322,17 +883,25 @@ function pickDistrict(name) {
 }
 
 function updateTotal() {
+  // Combo always has free delivery — total is fixed
+  if (selectedOption === 'combo') {
+    document.getElementById('deliveryAmt').textContent = 'FREE';
+    document.getElementById('totalFinal').style.display = 'flex';
+    document.getElementById('totalPending').style.display = 'none';
+    document.getElementById('totalAmt').textContent = 'Tk 1,390';
+    return;
+  }
   if (!selectedDistrict) {
     document.getElementById('deliveryAmt').textContent = '—';
     document.getElementById('totalFinal').style.display = 'none';
     document.getElementById('totalPending').style.display = 'block';
     return;
   }
-  const delivery = selectedDistrict.toLowerCase() === 'dhaka' ? 70 : 110;
-  const base = getCurrentPrice();
+  const delivery = selectedDistrict.toLowerCase() === 'dhaka' ? 80 : 110;
+  const base = OPTION_CONFIG[selectedOption].price;
   const total = base + delivery;
   document.getElementById('deliveryAmt').textContent    = 'Tk ' + delivery;
-  document.getElementById('totalAmt').textContent       = 'Tk ' + formatTk(total);
+  document.getElementById('totalAmt').textContent       = 'Tk ' + total;
   document.getElementById('totalFinal').style.display   = 'flex';
   document.getElementById('totalPending').style.display = 'none';
 }
@@ -1359,27 +928,23 @@ function submitOrder() {
   if (!valid) { document.getElementById('orderFormBlock').scrollIntoView({ behavior:'smooth', block:'start' }); return; }
 
   const cfg = OPTION_CONFIG[selectedOption];
-  const delivery = selectedDistrict.toLowerCase() === 'dhaka' ? 70 : 110;
-  const basePrice = getCurrentPrice();
-  const total    = basePrice + delivery;
+  const delivery = cfg.freeDelivery ? 0 : (selectedDistrict.toLowerCase() === 'dhaka' ? 80 : 110);
+  const total    = cfg.price + delivery;
 
   const btn = document.getElementById('confirmBtn');
   btn.disabled = true; btn.textContent = 'Submitting...';
 
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzGmzzk4eOGWe_JBMotAdTLYROVzG1HUFFWZgNGRMeqs62fwQzRbIvZvUyS8wygmlRA/exec';
-  const orderLabel = (selectedOption === 'combo' && isOfferActive())
-    ? cfg.label + ' [World Cup Discount applied: Tk1780 → Tk1480]'
-    : cfg.label;
   const payload = {
     name, phone,
     district: selectedDistrict,
     address,
-    order: orderLabel,
-    delivery: 'Tk ' + delivery,
+    order: cfg.label,
+    delivery: cfg.freeDelivery ? 'FREE' : 'Tk ' + delivery,
     total: 'Tk ' + total,
     timestamp: new Date().toLocaleString('en-BD', { timeZone:'Asia/Dhaka' })
   };
-  const params = new URLSearchParams({ name, phone, district: payload.district, delivery: delivery, total, order: selectedOption, coupon: (selectedOption === 'combo' && isOfferActive()) ? '1' : '0' });
+  const params = new URLSearchParams({ name, phone, district: payload.district, delivery: delivery, total, order: selectedOption });
 
   fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) })
     .then(()  => window.location.href = 'thankyou.html?' + params.toString())
