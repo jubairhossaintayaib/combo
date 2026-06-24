@@ -70,6 +70,7 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"/></
   .order-items { border-top: 1px solid var(--gray-200); padding-top: 12px; margin-top: 4px; }
   .order-item { display: flex; align-items: center; gap: 8px; font-size: 15px; margin-bottom: 8px; color: var(--black); }
   .item-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--black); flex-shrink: 0; }
+  .item-dot.gold { background: #1a7a40; }
   .free-delivery-badge {
     font-size: 11px; background: #e8f5e9; color: #1a7a40;
     border: 1px solid #b6e2c8;
@@ -139,7 +140,12 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"/></
   const ORDERS = {
     phantom:   [{ name: 'Phantom Elixir (30ml)' }],
     executive: [{ name: 'Executive Bleu (30ml)' }],
-    combo:     [{ name: 'Phantom Elixir (30ml)' }, { name: 'Executive Bleu (30ml)' }]
+    combo:     [
+      { name: 'Phantom Elixir (30ml)' },
+      { name: 'Executive Bleu (30ml)' },
+      { name: '5 ml Paco Rabanne Invictus (Inspired Version)', free: true },
+      { name: '5 ml Lacoste Blanc (Inspired Version)', free: true }
+    ]
   };
 
   const BASE_PRICES = { phantom: 890, executive: 890, combo: 1780 };
@@ -148,7 +154,8 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"/></
   items.forEach(item => {
     const div = document.createElement('div');
     div.className = 'order-item';
-    div.innerHTML = `<div class="item-dot"></div><span>${item.name}</span>`;
+    const freeBadge = item.free ? ' <span class="free-delivery-badge">🎁 FREE</span>' : '';
+    div.innerHTML = `<div class="item-dot${item.free ? ' gold' : ''}"></div><span>${item.name}</span>${freeBadge}`;
     itemsContainer.appendChild(div);
   });
 
