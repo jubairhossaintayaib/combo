@@ -70,11 +70,6 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"/></
   .order-items { border-top: 1px solid var(--gray-200); padding-top: 12px; margin-top: 4px; }
   .order-item { display: flex; align-items: center; gap: 8px; font-size: 15px; margin-bottom: 8px; color: var(--black); }
   .item-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--black); flex-shrink: 0; }
-  .free-delivery-badge {
-    font-size: 11px; background: #e8f5e9; color: #1a7a40;
-    border: 1px solid #b6e2c8;
-    border-radius: 20px; padding: 2px 10px; font-weight: 700; letter-spacing: 0.5px;
-  }
   .back-btn {
     display: inline-block; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
     color: var(--gray-600); text-decoration: none; border-bottom: 1px solid var(--gray-200);
@@ -136,9 +131,9 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"/></
   // Build order items based on what was ordered
   const itemsContainer = document.getElementById('orderItemsContainer');
   const ORDERS = {
-    phantom:   [{ name: 'Phantom Elixir (30ml)', free: false }],
-    executive: [{ name: 'Executive Bleu (30ml)', free: false }],
-    combo:     [{ name: 'Phantom Elixir (30ml)', free: false }, { name: 'Executive Bleu (30ml)', free: false }]
+    phantom:   [{ name: 'Phantom Elixir (30ml)' }],
+    executive: [{ name: 'Executive Bleu (30ml)' }],
+    combo:     [{ name: 'Phantom Elixir (30ml)' }, { name: 'Executive Bleu (30ml)' }]
   };
 
   const BASE_PRICES = { phantom: 890, executive: 890, combo: 1390 };
@@ -155,16 +150,8 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"/></
   const basePrice = BASE_PRICES[orderKey] || 1390;
   document.getElementById('sumBasePrice').textContent = 'Tk ' + basePrice.toLocaleString();
 
-  // Delivery row
-  if (orderKey === 'combo' || delivery === 0) {
-    document.getElementById('sumDelivery').innerHTML = 'FREE <span class="free-delivery-badge">🎁 Free</span>';
-    document.getElementById('sumDelivery').style.color = '#1a7a40';
-    // Hide district row for combo if no district was passed
-    const district = params.get('district');
-    if (!district || district === 'N/A') {
-      document.getElementById('sumDistrictRow').style.display = 'none';
-    }
-  } else if (!isNaN(delivery)) {
+  // Delivery row — everyone pays delivery now
+  if (!isNaN(delivery)) {
     document.getElementById('sumDelivery').textContent = 'Tk ' + delivery;
   }
 
@@ -172,7 +159,7 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"/></
   if (!isNaN(total)) {
     document.getElementById('sumTotal').textContent = 'Tk ' + total.toLocaleString();
   } else {
-    document.getElementById('sumTotal').textContent = 'Tk ' + basePrice.toLocaleString() + (orderKey === 'combo' ? '' : ' + delivery');
+    document.getElementById('sumTotal').textContent = 'Tk ' + basePrice.toLocaleString() + ' + delivery';
   }
 
   // Facebook Purchase event
